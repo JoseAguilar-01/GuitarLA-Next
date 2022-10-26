@@ -5,7 +5,7 @@ const Listado = ({ guitarras }) => {
 	return (
 		<div className={styles.listado}>
 			{guitarras.map((guitarra) => (
-				<Guitarra guitarra={guitarra} key={guitarra.url} />
+				<Guitarra guitarra={guitarra} key={guitarra.id} />
 			))}
 		</div>
 	);

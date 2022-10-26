@@ -2,15 +2,15 @@ import Link from 'next/link';
 import styles from '../styles/Curso.module.css';
 
 const Curso = ({ curso }) => {
-	const { titulo, contenido, imagen } = curso;
+	const { title, description, image_url } = curso;
 
 	return (
 		<section>
 			<div className={`contenedor ${styles.grid}`}>
 				<div className={styles.contenido}>
-					<h2 className="heading">{titulo}</h2>
+					<h2 className={styles.title}>{title}</h2>
 
-					<p className={styles.texto}>{contenido}</p>
+					<p className={styles.texto}>{description}</p>
 
 					<Link href="#">
 						<a className={styles.enlace}>Más información</a>
@@ -27,7 +27,7 @@ const Curso = ({ curso }) => {
 							rgb(0 0 0 / 0.63),
 							rgb(0 0 0 / 0.7)
 						),
-						url(${imagen.url});
+						url(${image_url});
 					background-size: cover;
 					background-repeat: no-repeat;
 				}

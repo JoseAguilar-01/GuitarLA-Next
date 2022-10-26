@@ -4,26 +4,26 @@ import { formatearFecha } from '../../helpers';
 import styles from '../../styles/Entrada.module.css';
 
 const EntradaBlog = ({ entrada }) => {
-	const { Titulo, Contenido, Imagen, published_at } = entrada;
+	const { title, description, image_url, published_at } = entrada;
 
 	return (
-		<Layout pagina={Titulo}>
+		<Layout pagina={title}>
 			<main className="contenedor">
-				<h1 className="heading"> {Titulo} </h1>
+				<h1 className="heading"> {title} </h1>
 
 				<article className={styles.entrada}>
 					<Image
-						src={Imagen.url}
+						src={image_url}
 						layout="responsive"
 						width={800}
 						height={600}
-						alt={`Imagen entrada ${Titulo}`}
+						alt={`Imagen entrada ${title}`}
 					/>
 
 					<div className={styles.contenido}>
 						<p className={styles.fecha}>{formatearFecha(published_at)}</p>
 
-						<p className={styles.texto}>{Contenido}</p>
+						<p className={styles.texto}>{description}</p>
 					</div>
 				</article>
 			</main>
@@ -33,7 +33,9 @@ const EntradaBlog = ({ entrada }) => {
 
 export async function getStaticPaths() {
 	const url = `${process.env.API_URL}/blogs`;
-	const respuesta = await fetch(url);
+	const respuesta = await fetch(url, {
+		headers: { apikey: process.env.API_KEY },
+	});
 	const entradas = await respuesta.json();
 
 	const paths = entradas.map((entrada) => ({
@@ -47,23 +49,15 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { url } }) {
-	const urlBlog = `${process.env.API_URL}/blogs?url=${url}`;
-	const respuesta = await fetch(urlBlog);
+	const urlBlog = `${process.env.API_URL}/blogs?url=eq.${url}`;
+	const respuesta = await fetch(urlBlog, {
+		headers: { apikey: process.env.API_KEY },
+	});
 	const entrada = await respuesta.json();
 
 	return {
 		props: { entrada: entrada[0] },
 	};
 }
-
-//  export async function getServerSideProps({ query: { id } }) {
-// 	const url = `${process.env.API_URL}/blogs/${id}`;
-// 	const respuesta = await fetch(url);
-// 	const entrada = await respuesta.json();
-
-// 	return {
-// 		props: { entrada },
-// 	};
-// }
 
 export default EntradaBlog;

@@ -1,12 +1,11 @@
 import { useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import Layout from '../../components/Layout';
 import styles from '/styles/Guitarra.module.css';
 
 const Producto = ({ guitarra, agregarCarrito }) => {
 	const [cantidad, setCantidad] = useState(1);
-
-	const { nombre, description, imagen, precio, id } = guitarra;
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -18,10 +17,10 @@ const Producto = ({ guitarra, agregarCarrito }) => {
 		// Agregar al carrito
 
 		const guitarraSeleccionada = {
-			_id: id,
-			nombre,
-			imagen: imagen.url,
-			precio,
+			id: guitarra.id,
+			name: guitarra.name,
+			image: guitarra.image_url,
+			price: guitarra.price,
 			cantidad,
 		};
 
@@ -32,23 +31,29 @@ const Producto = ({ guitarra, agregarCarrito }) => {
 		return;
 	};
 
-	return (
-		<Layout pagina={`Guitarra ${nombre}`}>
+	return guitarra === null ? (
+		<div className={styles.no_encontrado}>
+			<h1 className="heading">Página no encotrada</h1>
+
+			<Link href="/">Volver a Inicio</Link>
+		</div>
+	) : (
+		<Layout pagina={`Guitarra ${guitarra.name}`}>
 			<div className={styles.guitarra}>
 				<Image
 					priority="true"
-					src={imagen.url}
+					src={guitarra.image_url}
 					layout="responsive"
 					width={170}
 					height={350}
-					alt={`Imagen de la guitarra ${nombre}`}
+					alt={`Imagen de la guitarra ${guitarra.name}`}
 				/>
 
 				<div className={styles.contenido}>
-					<h3>{nombre}</h3>
+					<h3>{guitarra.name}</h3>
 
-					<p className={styles.description}>{description}</p>
-					<p className={styles.precio}>${precio}</p>
+					<p className={styles.description}>{guitarra.description}</p>
+					<p className={styles.precio}>${guitarra.price}</p>
 
 					<form className={styles.formulario} onSubmit={handleSubmit}>
 						<label>Cantidad:</label>
@@ -76,13 +81,15 @@ const Producto = ({ guitarra, agregarCarrito }) => {
 };
 
 export async function getServerSideProps({ query: { url } }) {
-	const urlGuitarra = `${process.env.API_URL}/guitarras?url=${url}`;
-	const respuesta = await fetch(urlGuitarra);
-	const guitarra = await respuesta.json();
+	const urlGuitarra = `${process.env.API_URL}/guitarras?url=eq.${url}`;
+	const response = await fetch(urlGuitarra, {
+		headers: { apikey: process.env.API_KEY },
+	});
+	const guitarra = await response.json();
 
 	return {
 		props: {
-			guitarra: guitarra[0],
+			guitarra: guitarra[0] || null,
 		},
 	};
 }

@@ -1,5 +1,4 @@
 import Link from 'next/link.js';
-import Layout from '../components/Layout.js';
 import styles from '../styles/NoEncontrado.module.css';
 
 const NoEncotrado = () => {

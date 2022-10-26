@@ -5,14 +5,14 @@ import ListadoBlog from '../components/ListadoBlog';
 
 const Home = ({ guitarras, curso, entradas }) => {
 	return (
-		<Layout pagina={'Inicio'} guitarra={guitarras[2]}>
+		<Layout pagina={'Inicio'} guitarra={guitarras[4]}>
 			<main className="contenedor">
 				<h1 className="heading">Nuestra Colección</h1>
 
 				<Listado guitarras={guitarras} />
 			</main>
 
-			<Curso curso={curso} />
+			<Curso curso={curso[0]} />
 
 			<section className="contenedor">
 				<ListadoBlog entradas={entradas} />
@@ -22,14 +22,18 @@ const Home = ({ guitarras, curso, entradas }) => {
 };
 
 export async function getServerSideProps() {
-	const urlGuitarras = `${process.env.API_URL}/guitarras?_sort=precio:asc`;
+	const urlGuitarras = `${process.env.API_URL}/guitarras`;
 	const urlCursos = `${process.env.API_URL}/cursos`;
-	const urlBlog = `${process.env.API_URL}/blogs?_limit=3&_sort=createdAt:desc`;
+	const urlBlog = `${process.env.API_URL}/blogs`;
+
+	const options = {
+		headers: { apikey: process.env.API_KEY },
+	};
 
 	const [resGuitarras, resCursos, resBlog] = await Promise.all([
-		fetch(urlGuitarras),
-		fetch(urlCursos),
-		fetch(urlBlog),
+		fetch(urlGuitarras, options),
+		fetch(urlCursos, options),
+		fetch(urlBlog, options),
 	]);
 
 	const [guitarras, curso, entradas] = await Promise.all([
@@ -37,6 +41,8 @@ export async function getServerSideProps() {
 		resCursos.json(),
 		resBlog.json(),
 	]);
+
+	console.log(guitarras[4]);
 
 	return {
 		props: {

@@ -3,23 +3,24 @@ import Link from 'next/link';
 import styles from '../styles/Guitarra.module.css';
 
 const Guitarra = ({ guitarra }) => {
-	const { nombre, description, imagen, precio, url } = guitarra;
+	const { name, description, image_url, price, url } = guitarra;
 
 	return (
 		<div className={styles.guitarra}>
 			<Image
-				src={imagen.url}
+				priority={true}
+				src={image_url}
 				layout="responsive"
 				width={150}
 				height={350}
-				alt={`Imagen de la guitarra ${nombre}`}
+				alt={`Imagen de la guitarra ${name}`}
 			/>
 
 			<div className={styles.contenido}>
-				<h3>{nombre}</h3>
+				<h3>{name}</h3>
 
 				<p className={styles.description}>{description}</p>
-				<p className={styles.precio}>${precio}</p>
+				<p className={styles.precio}>${price}</p>
 
 				<Link href={`/guitarras/${url}`}>
 					<a className={styles.enlace} type="button">
