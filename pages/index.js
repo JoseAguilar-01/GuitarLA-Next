@@ -5,7 +5,7 @@ import ListadoBlog from '../components/ListadoBlog';
 
 const Home = ({ guitarras, curso, entradas }) => {
 	return (
-		<Layout pagina={'Inicio'} guitarra={guitarras[4]}>
+		<Layout pagina={'Inicio'} guitarra={guitarras[3]}>
 			<main className="contenedor">
 				<h1 className="heading">Nuestra Colección</h1>
 
@@ -41,8 +41,6 @@ export async function getServerSideProps() {
 		resCursos.json(),
 		resBlog.json(),
 	]);
-
-	console.log(guitarras[4]);
 
 	return {
 		props: {
