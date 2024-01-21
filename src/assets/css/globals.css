@@ -1,33 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap');
-
 :root {
   --primary: #e99401;
   --black: #262626;
   --white: #fff;
 }
+
 html {
   font-size: 62.5%;
   box-sizing: border-box;
 }
+
 *,
 *:before,
 *:after {
   box-sizing: inherit;
 }
+
 body {
   font-size: 2rem;
   line-height: 1.5;
-}
-img {
-  max-width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-[class*='contenedor'] {
+img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.container {
   max-width: 120rem;
   margin: 0 auto;
   width: 95%;
+  height: 100%;
 }
-[class*='heading'] {
+
+.heading {
   font-size: 4rem;
   text-align: center;
   font-weight: 900;

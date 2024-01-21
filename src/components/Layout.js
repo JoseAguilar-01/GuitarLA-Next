@@ -10,12 +10,6 @@ const Layout = ({ children, pagina, guitarra }) => {
         <meta name='author' content='José G. Aguilar' />
         <title>GuitarLA - {pagina}</title>
       </Head>
-
-      <Header guitarra={guitarra} />
-
-      {children}
-
-      <Footer />
     </div>
   );
 };

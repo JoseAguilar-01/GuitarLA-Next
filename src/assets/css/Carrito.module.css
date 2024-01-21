@@ -75,7 +75,7 @@
 }
 .eliminar:hover {
   cursor: pointer;
-  border: 1px solid var(--negro);
+  border: 1px solid var(--black);
   background-color: #f6f5f5;
 }
 .resumen {

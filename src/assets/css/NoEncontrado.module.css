@@ -6,7 +6,7 @@
   align-items: center;
 }
 .no_encontrado h1 {
-  color: var(--negro);
+  color: var(--black);
 }
 .no_encontrado a {
   color: var(--primary);

@@ -6,7 +6,7 @@ const Curso = ({ curso }) => {
 
   return (
     <section>
-      <div className={`contenedor ${styles.grid}`}>
+      <div className={`container ${styles.grid}`}>
         <div className={styles.contenido}>
           <h2 className={styles.title}>{title}</h2>
 

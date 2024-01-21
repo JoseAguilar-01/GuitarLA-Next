@@ -1,0 +1,148 @@
+.header {
+  background-image: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.8),
+      rgb(0 0 0 / 0.7)
+    ),
+    url(../../../assets/img/header.jpg);
+  background-size: cover;
+  background-position: 50%;
+  padding: 5rem 2.5rem;
+  position: relative;
+}
+
+.bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  @media (width >= 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.brand_image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.navigation {
+  margin-top: 5rem;
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  color: var(--white);
+  z-index: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  @media (width >= 768px) {
+    margin-top: 0;
+  }
+}
+
+.navigation a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navigation a:hover {
+  background-color: var(--primary);
+}
+
+.model {
+  color: var(--white);
+  margin-top: 5rem;
+  text-align: center;
+
+  @media (width <= 768px) {
+    text-align: left;
+    width: 50%;
+  }
+}
+
+.model h2 {
+  font-size: 8rem;
+}
+
+.model p:first-of-type {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 2.2rem;
+}
+
+.price {
+  font-size: 8rem;
+  color: var(--primary);
+  font-weight: 900;
+  line-height: 0;
+}
+
+.model a {
+  margin-top: 2rem;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--white);
+  border: 2px solid var(--primary);
+  padding: 1rem 5rem;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+.model a:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.guitar {
+  display: none;
+
+  @media (min-width: 992px) {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -8px;
+    animation-name: animate_guitar;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-delay: 0.3s;
+    animation-timing-function: ease-in-out;
+  }
+}
+
+.guitar img {
+  object-fit: unset;
+}
+
+@keyframes animate_guitar {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
