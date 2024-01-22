@@ -1,0 +1,32 @@
+.not_found {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.not_found h1 {
+  color: var(--black);
+}
+
+.link {
+  margin: 0;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: 4px;
+  padding: 1rem 5rem;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+.link:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}

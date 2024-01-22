@@ -24,7 +24,7 @@ export const Guitar: TGuitar = ({ guitar }) => {
         <p className={styles.description}>{description}</p>
         <p className={styles.price}>${price}</p>
 
-        <Link href={`/guitarras/${url}`} className={styles.link}>
+        <Link href={`/tienda/guitarras/${url}`} className={styles.link}>
           Ver Producto
         </Link>
       </div>
