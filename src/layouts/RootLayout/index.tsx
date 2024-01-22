@@ -1,6 +1,7 @@
 import { Outfit } from 'next/font/google';
 import type { Metadata } from 'next';
-import { Header, Footer } from 'src/components';
+import { GuitarLAProvider } from '@context/GuitarLA';
+import { Header, Footer } from '@components/index';
 import '@assets/css/globals.css';
 import '@assets/css/normalize.css';
 
@@ -15,11 +16,13 @@ export const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='es'>
       <body className={outfit.className}>
-        <Header />
+        <GuitarLAProvider>
+          <Header />
 
-        {children}
+          {children}
 
-        <Footer />
+          <Footer />
+        </GuitarLAProvider>
       </body>
     </html>
   );
