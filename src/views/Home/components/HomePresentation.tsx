@@ -1,6 +1,4 @@
-import { GuitarList } from '@components/index';
-import { Course } from '@components/Course';
-import { EntriesList } from '@components/EntriesList';
+import { Course, EntriesList, GuitarList } from '@components/index';
 import { THomePresentation } from '../models/homePresentation.model';
 
 export const HomePresentation: THomePresentation = props => {

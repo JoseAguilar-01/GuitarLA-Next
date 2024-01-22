@@ -1,4 +1,4 @@
-import { GuitarList } from '@components/GuitarList';
+import { GuitarList } from '@components/index';
 import { TStore } from '../models/Store.model';
 
 export const StorePresentation: TStore = ({ guitars }) => {

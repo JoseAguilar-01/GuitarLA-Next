@@ -1,4 +1,4 @@
-import { EntriesList } from '@components/EntriesList';
+import { EntriesList } from '@components/index';
 import { TBlog } from '../models/Blog.model';
 
 export const BlogPresentation: TBlog = ({ entries }) => {
