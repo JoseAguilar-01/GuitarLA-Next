@@ -2,7 +2,7 @@ export interface Guitar {
   id: number;
   name: string;
   description: string;
-  price: string;
+  price: number;
   url: string;
   image_url: string;
   created_at: string;
