@@ -1,45 +1,47 @@
-.contenido {
+.content {
   display: grid;
   align-items: baseline;
   gap: 5rem;
   padding: 7rem 0;
-}
-@media (min-width: 768px) {
-  .contenido {
+
+  @media (width >= 768px) {
     grid-template-columns: 3fr 2fr;
     align-items: start;
   }
 }
-.carrito {
+
+.cart {
   padding: 3rem 0;
 }
-.producto {
+
+.cart__container_products {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.product {
   display: grid;
   grid-template-columns: 1fr 3fr;
   align-items: center;
   gap: 4rem;
-  padding: 3rem 0;
-  border-bottom: 1px solid #cfcfcf;
+  padding: 3rem 2rem;
   position: relative;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.producto:last-of-type {
-  border: none;
-}
-.producto p {
-  margin-bottom: 1rem;
-}
-.nombre {
+
+.name {
   font-weight: 700;
   font-size: 2.2rem;
 }
-.cantidad {
+
+.quantity {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-.cantidad p {
-  margin: 0;
-}
+
 .select {
   all: unset;
   padding: 1rem;
@@ -47,39 +49,57 @@
   flex: 1;
   text-align: center;
   border-radius: 1rem;
+  transition-property: background-color, border;
+  transition-duration: 0.15s;
 }
-.precio {
+
+.price {
   font-weight: 700;
   color: var(--primary);
 }
-.precio span {
-  font-size: 2.4rem;
-}
+
 .subtotal {
   font-weight: 700;
 }
-.subtotal span {
-  font-size: 2.4rem;
-}
-.eliminar {
+
+.delete {
   all: unset;
   border: 1px solid #cfcfcf;
+  border-radius: 4px;
   text-align: center;
   position: absolute;
-  right: 1rem;
+  right: 2rem;
   top: 3rem;
   padding: 0.5rem 2rem;
   font-weight: bold;
   transition-property: background-color, border;
   transition-duration: 0.2s;
 }
-.eliminar:hover {
-  cursor: pointer;
-  border: 1px solid var(--black);
-  background-color: #f6f5f5;
-}
-.resumen {
+
+.resume {
   background-color: #f6f5f5;
   padding: 3rem;
   border-radius: 1rem;
+}
+
+.product p {
+  margin-bottom: 1rem;
+}
+
+.quantity p {
+  margin: 0;
+}
+
+.price span {
+  font-size: 2.4rem;
+}
+
+.subtotal span {
+  font-size: 2.4rem;
+}
+
+.delete:hover,
+.select:hover {
+  border: 1px solid var(--black);
+  background-color: #f6f5f5;
 }

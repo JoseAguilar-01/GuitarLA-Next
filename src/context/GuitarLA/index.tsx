@@ -2,7 +2,7 @@
 
 import { createContext, useEffect, useState } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
-import { Product, Course, Entry, Guitar } from '@models/index';
+import { Cart, Course, Entry, Guitar } from '@models/index';
 import { TGuitarLAProvider } from './models/provider.model';
 import { ContextValues } from './models/context.model';
 
@@ -17,7 +17,7 @@ export const GuitarLAContext = createContext<ContextValues>({
 });
 
 export const GuitarLAProvider: TGuitarLAProvider = ({ children }) => {
-  const [cart, setCart] = useState<Product[]>([]);
+  const [cart, setCart] = useState<Cart>([]);
   const [guitars, setGuitars] = useState<Guitar[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
   const [entries, setEntries] = useState<Entry[]>([]);
@@ -93,23 +93,28 @@ export const GuitarLAProvider: TGuitarLAProvider = ({ children }) => {
     return entries;
   };
 
-  const addProduct = (product: Product) => {
+  const addProduct: ContextValues['addProduct'] = product => {
     const existMatchingProduct = cart.some(
       article => article.id === product.id,
     );
 
     if (existMatchingProduct) {
-      updateQuantity(product);
+      const { quantity, id } = product;
+
+      updateQuantity({ quantity, productId: id });
       return;
     }
 
     setCart([...cart, product]);
   };
 
-  const updateQuantity = (product: Product) => {
+  const updateQuantity: ContextValues['updateQuantity'] = ({
+    productId,
+    quantity,
+  }) => {
     const updatedCart = cart.map(article => {
-      if (article.id === product.id) {
-        article.quantity = product.quantity;
+      if (article.id === productId) {
+        article.quantity = quantity;
       }
 
       return article;
